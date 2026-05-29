@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About Us" },
-  { to: "/products", label: "Products" },
   { to: "/oem-odm", label: "OEM & ODM" },
   { to: "/quality", label: "Quality Control" },
   { to: "/contact", label: "Contact" },
@@ -16,14 +15,14 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-aura-beige-dark/60 bg-white/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-aura-line bg-white/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <NavLink
           to="/"
           className="group flex shrink-0 items-baseline gap-1"
           onClick={() => setOpen(false)}
         >
-          <span className="font-display text-xl font-semibold tracking-tight text-aura-black sm:text-2xl">
+          <span className="font-display text-xl font-medium tracking-normal text-aura-black sm:text-2xl">
             SteelAura
           </span>
           <span className="hidden text-xs font-medium uppercase tracking-[0.2em] text-aura-gold sm:inline">
@@ -41,7 +40,7 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
 
         <NavLink
           to="/contact"
-          className="hidden rounded-full bg-aura-black px-5 py-2 text-sm font-medium text-white transition hover:bg-aura-gold hover:text-aura-black md:inline-block"
+          className="hidden rounded-full bg-aura-black px-5 py-2 text-sm font-medium text-white transition hover:bg-aura-black/90 md:inline-block"
           onClick={() => setOpen(false)}
         >
           Get a quote
@@ -49,7 +48,7 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-aura-beige-dark text-aura-black md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-aura-line text-aura-black md:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}
@@ -68,7 +67,7 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
       <div
         id="mobile-nav"
         className={[
-          "border-t border-aura-beige-dark/60 bg-white md:hidden",
+          "border-t border-aura-line bg-white md:hidden",
           open ? "block" : "hidden",
         ].join(" ")}
       >
@@ -80,7 +79,7 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
               className={({ isActive }) =>
                 [
                   "rounded-md px-3 py-3 text-base font-medium",
-                  isActive ? "bg-aura-beige text-aura-gold" : "text-aura-black",
+                  isActive ? "bg-aura-porcelain font-medium text-aura-gold" : "text-aura-black",
                 ].join(" ")
               }
               end={to === "/"}

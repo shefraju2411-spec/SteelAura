@@ -4,11 +4,11 @@ type NavLinkClass = (props: { isActive: boolean }) => string;
 
 export function Footer({ navLinkClass }: { navLinkClass: NavLinkClass }) {
   return (
-    <footer className="border-t border-aura-beige-dark bg-aura-beige/50">
+    <footer className="border-t border-aura-line bg-aura-porcelain/70">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <p className="font-display text-xl font-semibold text-aura-black">SteelAura Jewelry</p>
+            <p className="font-display text-xl font-medium tracking-normal text-aura-black">SteelAura Jewelry</p>
             <p className="mt-3 max-w-md text-sm leading-relaxed text-aura-stone">
               Stainless steel fashion jewelry manufacturer in China. OEM, ODM, and private label
               production for brands and wholesalers worldwide.
@@ -17,11 +17,6 @@ export function Footer({ navLinkClass }: { navLinkClass: NavLinkClass }) {
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-aura-gold">Explore</p>
             <ul className="mt-4 space-y-2">
-              <li>
-                <NavLink to="/products" className={navLinkClass}>
-                  Products
-                </NavLink>
-              </li>
               <li>
                 <NavLink to="/oem-odm" className={navLinkClass}>
                   OEM & ODM
@@ -45,6 +40,11 @@ export function Footer({ navLinkClass }: { navLinkClass: NavLinkClass }) {
               <li>
                 <NavLink to="/about" className={navLinkClass}>
                   About Us
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/our-company" className={navLinkClass}>
+                  Our Company
                 </NavLink>
               </li>
               <li>

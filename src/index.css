@@ -7,6 +7,6 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-white text-aura-black antialiased;
+    @apply bg-white font-sans text-aura-black antialiased;
   }
 }

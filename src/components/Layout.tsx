@@ -7,7 +7,7 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     "text-sm font-medium tracking-wide transition-colors",
     isActive
       ? "text-aura-gold"
-      : "text-aura-black/80 hover:text-aura-gold",
+      : "text-aura-black/75 hover:text-aura-gold",
   ].join(" ");
 
 export function Layout() {

@@ -5,30 +5,37 @@ export default {
     extend: {
       colors: {
         aura: {
+          /** Primary — deep black */
           black: "#0a0a0a",
-          gold: "#b8963e",
-          "gold-light": "#d4bc6a",
-          beige: "#f5f0e8",
-          "beige-dark": "#ebe4d8",
-          stone: "#8a8580",
+          /** Accent — soft antique gold (low saturation, not yellow) */
+          gold: "#958673",
+          /** Lighter gold for type on dark surfaces — still restrained */
+          "gold-soft": "#b0a38e",
+          /** Near-white section surfaces */
+          porcelain: "#f7f6f4",
+          /** Hairlines and dividers */
+          line: "#e6e5e2",
+          /** Secondary body copy */
+          stone: "#5c5c5c",
         },
       },
       fontFamily: {
         sans: [
+          '"Poppins"',
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",
           '"Segoe UI"',
-          "Roboto",
-          '"Helvetica Neue"',
-          "Arial",
           "sans-serif",
         ],
+        /** Headings — elegant serif */
         display: [
-          '"DM Sans"',
-          "system-ui",
-          "-apple-system",
-          "sans-serif",
+          '"Cormorant Garamond"',
+          "Georgia",
+          "Cambria",
+          '"Times New Roman"',
+          "Times",
+          "serif",
         ],
       },
     },
