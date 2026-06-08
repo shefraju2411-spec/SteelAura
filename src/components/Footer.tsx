@@ -23,8 +23,13 @@ export function Footer({ navLinkClass }: { navLinkClass: NavLinkClass }) {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/packaging-branding" className={navLinkClass}>
+                  Packaging
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/quality" className={navLinkClass}>
-                  Quality Control
+                  Craftsmanship
                 </NavLink>
               </li>
               <li>

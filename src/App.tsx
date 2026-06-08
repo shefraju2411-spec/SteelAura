@@ -7,6 +7,8 @@ import { Products } from "./pages/Products";
 import { CustomManufacturing } from "./pages/CustomManufacturing";
 import { QualityControl } from "./pages/QualityControl";
 import { Contact } from "./pages/Contact";
+import { PackagingBranding } from "./pages/PackagingBranding";
+import { Gallery } from "./pages/Gallery";
 
 export default function App() {
   return (
@@ -14,9 +16,11 @@ export default function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/gallery" element={<Gallery />} />
         <Route path="/our-company" element={<OurCompany />} />
         <Route path="/products" element={<Products />} />
         <Route path="/oem-odm" element={<CustomManufacturing />} />
+        <Route path="/packaging-branding" element={<PackagingBranding />} />
         <Route path="/quality" element={<QualityControl />} />
         <Route path="/contact" element={<Contact />} />
       </Route>

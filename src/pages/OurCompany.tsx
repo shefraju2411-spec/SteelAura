@@ -184,24 +184,12 @@ export function OurCompany() {
         We aim to become the manufacturing partner your business can confidently rely on.
       </p>
 
-      <div className="mt-14 flex flex-wrap gap-3">
+      <div className="mt-14">
         <Link
           to="/contact"
-          className="inline-flex rounded-full bg-aura-black px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-black/88"
+          className="inline-flex rounded-full bg-aura-black px-8 py-3 text-sm font-semibold text-white transition hover:bg-black/88"
         >
           Get in touch
-        </Link>
-        <Link
-          to="/about"
-          className="inline-flex rounded-full border border-aura-line px-6 py-2.5 text-sm font-semibold text-aura-black transition hover:border-aura-gold/40 hover:text-aura-gold"
-        >
-          About Us
-        </Link>
-        <Link
-          to="/"
-          className="inline-flex rounded-full border border-aura-line px-6 py-2.5 text-sm font-semibold text-aura-black transition hover:border-aura-gold/40 hover:text-aura-gold"
-        >
-          Back to home
         </Link>
       </div>
     </article>

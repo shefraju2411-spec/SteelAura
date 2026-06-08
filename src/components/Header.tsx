@@ -5,7 +5,8 @@ const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About Us" },
   { to: "/oem-odm", label: "OEM & ODM" },
-  { to: "/quality", label: "Quality Control" },
+  { to: "/packaging-branding", label: "Packaging" },
+  { to: "/quality", label: "Craftsmanship" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -30,7 +31,7 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
           </span>
         </NavLink>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
+        <nav className="hidden items-center gap-6 lg:gap-8 md:flex" aria-label="Main">
           {links.map(({ to, label }) => (
             <NavLink key={to} to={to} className={navLinkClass} end={to === "/"}>
               {label}
@@ -39,11 +40,11 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
         </nav>
 
         <NavLink
-          to="/contact"
+          to="/contact#inquiry"
           className="hidden rounded-full bg-aura-black px-5 py-2 text-sm font-medium text-white transition hover:bg-aura-black/90 md:inline-block"
           onClick={() => setOpen(false)}
         >
-          Get a quote
+          Get a free quote
         </NavLink>
 
         <button
@@ -89,11 +90,11 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
             </NavLink>
           ))}
           <NavLink
-            to="/contact"
+            to="/contact#inquiry"
             className="mt-2 rounded-full bg-aura-black px-4 py-3 text-center text-sm font-medium text-white"
             onClick={() => setOpen(false)}
           >
-            Get a quote
+            Get a free quote
           </NavLink>
         </nav>
       </div>

@@ -4,7 +4,7 @@ import { Footer } from "./Footer";
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   [
-    "text-sm font-medium tracking-wide transition-colors",
+    "whitespace-nowrap text-sm font-medium tracking-wide transition-colors",
     isActive
       ? "text-aura-gold"
       : "text-aura-black/75 hover:text-aura-gold",

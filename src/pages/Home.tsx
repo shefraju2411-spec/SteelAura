@@ -1,35 +1,36 @@
 import { Link } from "react-router-dom";
+import { InquiryForm } from "../components/InquiryForm";
 
 const categoryCards = [
   {
     title: "Rings",
     alt: "Placeholder for rings collection",
-    src: "https://placehold.co/640x480/f7f6f4/0a0a0a?text=Rings",
+    src: "/public/images/home/rings.png",
   },
   {
     title: "Necklaces",
     alt: "Placeholder for necklaces collection",
-    src: "https://placehold.co/640x480/f7f6f4/5c5c5c?text=Necklaces",
+    src: "public/images/home/necklaces.png",
   },
   {
     title: "Pendants",
     alt: "Placeholder for pendants collection",
-    src: "https://placehold.co/640x480/f7f6f4/0a0a0a?text=Pendants",
+    src: "public/images/home/pendants.png",
   },
   {
     title: "Earrings",
     alt: "Placeholder for earrings collection",
-    src: "https://placehold.co/640x480/ffffff/958673?text=Earrings",
+    src: "public/images/home/earrings.png",
   },
   {
     title: "Bracelets",
     alt: "Placeholder for bracelets collection",
-    src: "https://placehold.co/640x480/f7f6f4/0a0a0a?text=Bracelets",
+    src: "public/images/home/bracelets.png",
   },
   {
     title: "Custom jewelry and gift sets",
     alt: "Placeholder for custom jewelry and gift sets",
-    src: "https://placehold.co/640x480/0a0a0a/b0a38e?text=Custom+%26+Gifts",
+    src:"public/images/home/giftboxes.png",
   },
 ] as const;
 
@@ -135,10 +136,10 @@ export function Home() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                to="/contact"
+                to="/contact#inquiry"
                 className="inline-flex items-center justify-center rounded-full bg-aura-black px-8 py-3 text-sm font-semibold text-white transition hover:bg-black/85"
               >
-                Request a quote
+                Get a free quote
               </Link>
               <Link
                 to="/contact"
@@ -151,7 +152,7 @@ export function Home() {
           <div className="relative">
             <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-aura-porcelain shadow-sm ring-1 ring-black/[0.06]">
               <img
-                src="https://placehold.co/1200x900/f7f6f4/0a0a0a?text=SteelAura+Collection"
+                src="/public/images/home/hero.png"
                 alt="Hero placeholder representing stainless steel jewelry manufacturing"
                 className="h-full w-full object-cover"
                 width={1200}
@@ -180,15 +181,12 @@ export function Home() {
           <ul className="mt-14 grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {categoryCards.map(({ title, alt, src }) => (
               <li key={title} className="flex min-h-0">
-                <Link
-                  to="/products"
-                  className="group flex w-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/[0.06] transition hover:shadow-md hover:ring-aura-gold/20"
-                >
+                <article className="flex w-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/[0.06]">
                   <div className="aspect-[4/3] w-full shrink-0 overflow-hidden bg-aura-porcelain">
                     <img
                       src={src}
                       alt={alt}
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                      className="h-full w-full object-cover"
                       width={640}
                       height={480}
                       loading="lazy"
@@ -199,7 +197,7 @@ export function Home() {
                       {title}
                     </span>
                   </div>
-                </Link>
+                </article>
               </li>
             ))}
           </ul>
@@ -311,6 +309,24 @@ export function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Inquiry */}
+      <section className="border-t border-aura-line bg-white py-20 sm:py-24" aria-labelledby="home-inquiry-heading">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-aura-gold">Get started</p>
+          <h2
+            id="home-inquiry-heading"
+            className="mt-3 font-display text-3xl font-medium tracking-normal text-aura-black sm:text-4xl"
+          >
+            Get a free quote
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-aura-stone">
+            Complete the form below and our team will follow up with manufacturing options tailored to your
+            program.
+          </p>
+          <InquiryForm id="home-inquiry" className="mt-10" />
         </div>
       </section>
     </>
