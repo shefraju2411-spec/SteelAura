@@ -147,7 +147,7 @@ export function PackagingBranding() {
           </div>
           <div className="aspect-[4/3] overflow-hidden rounded-2xl border border-aura-line bg-aura-porcelain shadow-sm ring-1 ring-black/[0.06]">
             <img
-              src="public/images/packaging/packaging.png"
+              src="/images/packbox.png"
               alt="Placeholder for custom jewelry packaging and branding"
               className="h-full w-full object-cover"
               width={800}

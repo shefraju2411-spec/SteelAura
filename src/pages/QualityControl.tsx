@@ -28,7 +28,7 @@ const manufacturingMethods = [
   {
     id: "cnc-detailing",
     title: "CNC Detailing",
-    image: "/images/cnc.PNG",
+    image: "/images/CNC.PNG",
     paragraphs: [
       "CNC machining is used to create fine engravings, custom textures, logos, and intricate design elements with exceptional precision. The computer-controlled process ensures consistent quality and sharp detailing, even for complex jewelry designs.",
     ],
@@ -36,7 +36,7 @@ const manufacturingMethods = [
   {
     id: "stone-setting",
     title: "Stone Setting",
-    image: "/images/stone-setting.jpg",
+    image: "/images/stonesetting.png",
     paragraphs: [
       "Our skilled artisans carefully set gemstones and decorative stones to ensure both security and visual appeal. Every stone is positioned with precision to enhance brilliance, durability, and the overall elegance of the finished piece.",
     ],

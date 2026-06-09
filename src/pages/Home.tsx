@@ -288,7 +288,7 @@ export function Home() {
                     to="/contact"
                     className="inline-flex items-center justify-center rounded-full bg-aura-black px-8 py-3 text-sm font-semibold text-white transition hover:bg-black/88"
                   >
-                    Contact manufacturing
+                    Contact Us
                   </Link>
                   <Link
                     to="/about"
