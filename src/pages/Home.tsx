@@ -5,7 +5,7 @@ const categoryCards = [
   {
     title: "Rings",
     alt: "Placeholder for rings collection",
-    src: "/images/home/rings.png",
+    src: "/images/rings.png",
   },
   {
     title: "Necklaces",
