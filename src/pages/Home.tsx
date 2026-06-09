@@ -154,7 +154,7 @@ export function Home() {
           <div className="relative">
             <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-aura-porcelain shadow-sm ring-1 ring-black/[0.06]">
               <img
-                src="/public/images/home/hero.png"
+                src="/images/hero.png"
                 alt="Hero placeholder representing stainless steel jewelry manufacturing"
                 className="h-full w-full object-cover"
                 width={1200}
