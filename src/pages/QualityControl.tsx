@@ -4,7 +4,7 @@ const manufacturingMethods = [
   {
     id: "die-casting",
     title: "Die Casting",
-    image: "/public/images/craftsmanship/mold.jpeg",
+    src: "/public/images/craftsmanship/mold.jpeg",
     paragraphs: [
       "Die casting is ideal for producing intricate and highly detailed jewelry components. Molten metal is injected into precision molds under high pressure, allowing complex designs to be manufactured with excellent accuracy, consistency, and surface quality.",
     ],
@@ -28,7 +28,7 @@ const manufacturingMethods = [
   {
     id: "cnc-detailing",
     title: "CNC Detailing",
-    image: "/images/cnc.PNG",
+    src: "/images/cnc.PNG",
     paragraphs: [
       "CNC machining is used to create fine engravings, custom textures, logos, and intricate design elements with exceptional precision. The computer-controlled process ensures consistent quality and sharp detailing, even for complex jewelry designs.",
     ],
@@ -36,7 +36,7 @@ const manufacturingMethods = [
   {
     id: "stone-setting",
     title: "Stone Setting",
-    image: "/images/stone-setting.jpg",
+    src: "/images/stone-setting.jpg",
     paragraphs: [
       "Our skilled artisans carefully set gemstones and decorative stones to ensure both security and visual appeal. Every stone is positioned with precision to enhance brilliance, durability, and the overall elegance of the finished piece.",
     ],
@@ -44,7 +44,7 @@ const manufacturingMethods = [
   {
     id: "polishing-finishing",
     title: "Polishing & Finishing",
-    image: "/images/polish.jpeg",
+    src: "/images/polish.jpeg",
     paragraphs: [
       "Each jewelry piece undergoes multiple polishing and finishing stages to refine its surface and enhance its appearance. This process removes imperfections, creates a smooth texture, and delivers the premium shine expected from high-quality jewelry.",
     ],
@@ -52,7 +52,7 @@ const manufacturingMethods = [
   {
     id: "pvd-plating",
     title: "PVD Vacuum Plating",
-    image: "/images/pvd-plating.jpg",
+    src: "/images/pvd-plating.jpg",
     paragraphs: [
       "PVD vacuum plating provides a durable and long-lasting color finish while improving resistance to wear and tarnishing. Available in a variety of colors, including gold, rose gold, black, and silver, it ensures both beauty and durability for everyday wear.",
     ],
