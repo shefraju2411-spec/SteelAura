@@ -5,12 +5,12 @@ const categoryCards = [
   {
     title: "Rings",
     alt: "Placeholder for rings collection",
-    src: "/public/images/home/rings.png",
+    src: "/images/home/rings.png",
   },
   {
     title: "Necklaces",
     alt: "Placeholder for necklaces collection",
-    src: "public/images/home/necklaces.png",
+    src: "/images/home/necklaces.png",
   },
   {
     title: "Pendants",
