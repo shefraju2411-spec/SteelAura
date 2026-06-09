@@ -20,7 +20,7 @@ const manufacturingMethods = [
   {
     id: "precision-cutting",
     title: "Precision Cutting",
-    image: "/public/images/craftsmanship/precision.PNG",
+    image: "/images/precision.PNG",
     paragraphs: [
       "Using advanced automated cutting technology, stainless steel is precisely cut into custom shapes, patterns, and openwork designs. This process delivers clean edges, high accuracy, and excellent consistency, making it ideal for both simple and intricate jewelry components.",
     ],
@@ -28,7 +28,7 @@ const manufacturingMethods = [
   {
     id: "cnc-detailing",
     title: "CNC Detailing",
-    image: "/public/images/craftsmanship/cnc.PNG",
+    image: "/images/cnc.PNG",
     paragraphs: [
       "CNC machining is used to create fine engravings, custom textures, logos, and intricate design elements with exceptional precision. The computer-controlled process ensures consistent quality and sharp detailing, even for complex jewelry designs.",
     ],
@@ -36,7 +36,7 @@ const manufacturingMethods = [
   {
     id: "stone-setting",
     title: "Stone Setting",
-    image: "/images/craftsmanship/stone-setting.jpg",
+    image: "/images/stone-setting.jpg",
     paragraphs: [
       "Our skilled artisans carefully set gemstones and decorative stones to ensure both security and visual appeal. Every stone is positioned with precision to enhance brilliance, durability, and the overall elegance of the finished piece.",
     ],
@@ -44,7 +44,7 @@ const manufacturingMethods = [
   {
     id: "polishing-finishing",
     title: "Polishing & Finishing",
-    image: "/public/images/craftsmanship/polish.jpeg",
+    image: "/images/polish.jpeg",
     paragraphs: [
       "Each jewelry piece undergoes multiple polishing and finishing stages to refine its surface and enhance its appearance. This process removes imperfections, creates a smooth texture, and delivers the premium shine expected from high-quality jewelry.",
     ],
@@ -52,7 +52,7 @@ const manufacturingMethods = [
   {
     id: "pvd-plating",
     title: "PVD Vacuum Plating",
-    image: "/images/craftsmanship/pvd-plating.jpg",
+    image: "/images/pvd-plating.jpg",
     paragraphs: [
       "PVD vacuum plating provides a durable and long-lasting color finish while improving resistance to wear and tarnishing. Available in a variety of colors, including gold, rose gold, black, and silver, it ensures both beauty and durability for everyday wear.",
     ],

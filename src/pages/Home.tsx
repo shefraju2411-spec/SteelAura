@@ -10,27 +10,27 @@ const categoryCards = [
   {
     title: "Necklaces",
     alt: "Placeholder for necklaces collection",
-    src: "/images/home/necklaces.png",
+    src: "/images/necklaces.png",
   },
   {
     title: "Pendants",
     alt: "Placeholder for pendants collection",
-    src: "public/images/home/pendants.png",
+    src: "/images/pendants.png",
   },
   {
     title: "Earrings",
     alt: "Placeholder for earrings collection",
-    src: "public/images/home/earrings.png",
+    src: "/images/earrings.png",
   },
   {
     title: "Bracelets",
     alt: "Placeholder for bracelets collection",
-    src: "public/images/home/bracelets.png",
+    src: "/images/bracelets.png",
   },
   {
     title: "Custom jewelry and gift sets",
     alt: "Placeholder for custom jewelry and gift sets",
-    src:"public/images/home/giftboxes.png",
+    src:"/images/giftboxes.png",
   },
 ] as const;
 
