@@ -36,7 +36,7 @@ const manufacturingMethods = [
   {
     id: "stone-setting",
     title: "Stone Setting",
-    image: "/images/stonesetting.png",
+    image: "/images/stonesetting.PNG",
     paragraphs: [
       "Our skilled artisans carefully set gemstones and decorative stones to ensure both security and visual appeal. Every stone is positioned with precision to enhance brilliance, durability, and the overall elegance of the finished piece.",
     ],

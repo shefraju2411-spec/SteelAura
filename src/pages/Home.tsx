@@ -300,7 +300,7 @@ export function Home() {
               </div>
               <div className="relative min-h-[280px] bg-aura-porcelain lg:min-h-0">
                 <img
-                  src="https://placehold.co/900x700/0a0a0a/b0a38e?text=Production+Quality"
+                  src="/images/quality.png"
                   alt="Placeholder image suggesting factory quality and jewelry production"
                   className="absolute inset-0 h-full w-full object-cover"
                   width={900}
