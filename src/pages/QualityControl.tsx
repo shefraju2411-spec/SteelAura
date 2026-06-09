@@ -4,7 +4,7 @@ const manufacturingMethods = [
   {
     id: "die-casting",
     title: "Die Casting",
-    src: "/public/images/craftsmanship/mold.jpeg",
+    src: "/images/mold.jpeg",
     paragraphs: [
       "Die casting is ideal for producing intricate and highly detailed jewelry components. Molten metal is injected into precision molds under high pressure, allowing complex designs to be manufactured with excellent accuracy, consistency, and surface quality.",
     ],
@@ -12,7 +12,7 @@ const manufacturingMethods = [
   {
     id: "hydraulic-stamping",
     title: "Hydraulic Stamping",
-    image: "/public/images/craftsmanship/stamping.PNG",
+    src: "/images/stamping.PNG",
     paragraphs: [
       "Hydraulic stamping is used to create simple yet elegant jewelry designs with high efficiency. The process enables precise shaping, embossing, and texturing of metal, making it particularly suitable for bracelets, pendants, necklaces, and other minimalist jewelry styles.",
     ],
@@ -20,7 +20,7 @@ const manufacturingMethods = [
   {
     id: "precision-cutting",
     title: "Precision Cutting",
-    image: "/images/precision.PNG",
+    src: "/images/precision.PNG",
     paragraphs: [
       "Using advanced automated cutting technology, stainless steel is precisely cut into custom shapes, patterns, and openwork designs. This process delivers clean edges, high accuracy, and excellent consistency, making it ideal for both simple and intricate jewelry components.",
     ],
