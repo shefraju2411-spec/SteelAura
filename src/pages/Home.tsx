@@ -141,12 +141,14 @@ export function Home() {
               >
                 Get a free quote
               </Link>
-              <Link
-                to="/contact"
+              <a
+                href="https://wa.me/8613305631958"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full border border-aura-line bg-white px-8 py-3 text-sm font-semibold text-aura-black transition hover:border-aura-gold/50 hover:text-aura-gold"
               >
                 Free Consultation
-              </Link>
+              </a>
             </div>
           </div>
           <div className="relative">

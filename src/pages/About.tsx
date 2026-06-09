@@ -6,14 +6,7 @@ export function About() {
       <p className="text-xs font-semibold uppercase tracking-[0.25em] text-aura-gold">Company</p>
       <h1 className="mt-3 font-display text-4xl font-medium tracking-normal text-aura-black">About Us</h1>
 
-      <Link
-        to="/gallery"
-        className="mt-6 inline-flex rounded-full border border-aura-line bg-aura-porcelain/50 px-8 py-3 text-sm font-semibold text-aura-black transition hover:border-aura-gold/40 hover:text-aura-gold"
-      >
-        Gallery
-      </Link>
-
-      <p className="mt-8 text-lg leading-relaxed text-aura-stone sm:text-xl">
+      <p className="mt-6 text-lg leading-relaxed text-aura-stone sm:text-xl">
         SteelAura Jewelry is a China-based manufacturer focused on stainless steel fashion jewelry for global
         brands, wholesalers, retailers, and private label partners. We combine disciplined production with clear
         communication so you can plan launches and inventory with zero surprises.

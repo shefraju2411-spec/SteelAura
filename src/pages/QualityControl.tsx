@@ -1,10 +1,10 @@
-import { useEffect, useId, useState } from "react";
 import { Link } from "react-router-dom";
 
 const manufacturingMethods = [
   {
     id: "die-casting",
     title: "Die Casting",
+    image: "/public/images/craftsmanship/mold.jpeg",
     paragraphs: [
       "Die casting is ideal for producing intricate and highly detailed jewelry components. Molten metal is injected into precision molds under high pressure, allowing complex designs to be manufactured with excellent accuracy, consistency, and surface quality.",
     ],
@@ -12,6 +12,7 @@ const manufacturingMethods = [
   {
     id: "hydraulic-stamping",
     title: "Hydraulic Stamping",
+    image: "/public/images/craftsmanship/stamping.PNG",
     paragraphs: [
       "Hydraulic stamping is used to create simple yet elegant jewelry designs with high efficiency. The process enables precise shaping, embossing, and texturing of metal, making it particularly suitable for bracelets, pendants, necklaces, and other minimalist jewelry styles.",
     ],
@@ -19,6 +20,7 @@ const manufacturingMethods = [
   {
     id: "precision-cutting",
     title: "Precision Cutting",
+    image: "/public/images/craftsmanship/precision.PNG",
     paragraphs: [
       "Using advanced automated cutting technology, stainless steel is precisely cut into custom shapes, patterns, and openwork designs. This process delivers clean edges, high accuracy, and excellent consistency, making it ideal for both simple and intricate jewelry components.",
     ],
@@ -26,6 +28,7 @@ const manufacturingMethods = [
   {
     id: "cnc-detailing",
     title: "CNC Detailing",
+    image: "/public/images/craftsmanship/cnc.PNG",
     paragraphs: [
       "CNC machining is used to create fine engravings, custom textures, logos, and intricate design elements with exceptional precision. The computer-controlled process ensures consistent quality and sharp detailing, even for complex jewelry designs.",
     ],
@@ -33,6 +36,7 @@ const manufacturingMethods = [
   {
     id: "stone-setting",
     title: "Stone Setting",
+    image: "/images/craftsmanship/stone-setting.jpg",
     paragraphs: [
       "Our skilled artisans carefully set gemstones and decorative stones to ensure both security and visual appeal. Every stone is positioned with precision to enhance brilliance, durability, and the overall elegance of the finished piece.",
     ],
@@ -40,6 +44,7 @@ const manufacturingMethods = [
   {
     id: "polishing-finishing",
     title: "Polishing & Finishing",
+    image: "/public/images/craftsmanship/polish.jpeg",
     paragraphs: [
       "Each jewelry piece undergoes multiple polishing and finishing stages to refine its surface and enhance its appearance. This process removes imperfections, creates a smooth texture, and delivers the premium shine expected from high-quality jewelry.",
     ],
@@ -47,6 +52,7 @@ const manufacturingMethods = [
   {
     id: "pvd-plating",
     title: "PVD Vacuum Plating",
+    image: "/images/craftsmanship/pvd-plating.jpg",
     paragraphs: [
       "PVD vacuum plating provides a durable and long-lasting color finish while improving resistance to wear and tarnishing. Available in a variety of colors, including gold, rose gold, black, and silver, it ensures both beauty and durability for everyday wear.",
     ],
@@ -63,64 +69,44 @@ const pvdBenefits = [
 const qcCheckpoints = [
   "Raw material verification",
   "Structural inspection",
-  "Plating consistency checks",
-  "Polishing inspection",
+  "Plating and Polishing consistency checks",
   "Stone security testing",
   "Clasp and chain testing",
   "Final appearance inspection",
 ] as const;
 
-function ImageUploadSlot({ methodTitle }: { methodTitle: string }) {
-  const uploadId = useId();
-  const [preview, setPreview] = useState<string | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (preview?.startsWith("blob:")) URL.revokeObjectURL(preview);
-    };
-  }, [preview]);
-
-  const placeholder = `https://placehold.co/720x540/f7f6f4/958673?text=${encodeURIComponent(methodTitle)}`;
-  const displaySrc = preview ?? placeholder;
-
-  const handleFile = (file: File | undefined) => {
-    if (!file?.type.startsWith("image/")) return;
-    setPreview((prev) => {
-      if (prev?.startsWith("blob:")) URL.revokeObjectURL(prev);
-      return URL.createObjectURL(file);
-    });
-  };
+function MethodImage({ src, title }: { src: string; title: string }) {
+  const placeholder = `https://placehold.co/720x540/f7f6f4/958673?text=${encodeURIComponent(title)}`;
 
   return (
-    <label
-      htmlFor={uploadId}
-      className="group relative block aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-2xl border border-aura-line bg-white shadow-sm ring-1 ring-black/[0.04] transition hover:ring-aura-gold/25"
-    >
+    <figure className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-aura-line bg-aura-porcelain shadow-sm ring-1 ring-black/[0.04]">
       <img
-        src={displaySrc}
-        alt={preview ? `${methodTitle} image` : `${methodTitle} placeholder`}
-        className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-      />
-      <input
-        id={uploadId}
-        type="file"
-        accept="image/*"
-        className="sr-only"
-        onChange={(e) => {
-          handleFile(e.target.files?.[0]);
-          e.target.value = "";
+        src={src}
+        alt={title}
+        className="h-full w-full object-cover"
+        width={720}
+        height={540}
+        loading="lazy"
+        onError={(e) => {
+          const img = e.currentTarget;
+          if (!img.dataset.fallback) {
+            img.dataset.fallback = "true";
+            img.src = placeholder;
+          }
         }}
       />
-    </label>
+    </figure>
   );
 }
 
 function ManufacturingMethod({
   title,
+  image,
   paragraphs,
   reverse = false,
 }: {
   title: string;
+  image: string;
   paragraphs: readonly string[];
   reverse?: boolean;
 }) {
@@ -139,7 +125,7 @@ function ManufacturingMethod({
         </div>
       </div>
       <div className={reverse ? "lg:order-1" : undefined}>
-        <ImageUploadSlot methodTitle={title} />
+        <MethodImage src={image} title={title} />
       </div>
     </div>
   );
@@ -227,6 +213,7 @@ export function QualityControl() {
               <ManufacturingMethod
                 key={method.id}
                 title={method.title}
+                image={method.image}
                 paragraphs={method.paragraphs}
                 reverse={index % 2 === 1}
               />

@@ -85,7 +85,6 @@ const brandingAddOns = [
   "Custom Jewelry Pouches",
   "Thank You Cards",
   "Jewelry Care Instructions",
-  "Warranty Cards",
   "Product Information Cards",
   "Gift Message Cards",
   "Printed Sleeves",

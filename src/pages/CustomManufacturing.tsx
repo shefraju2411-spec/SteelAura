@@ -1,28 +1,25 @@
 import { Link } from "react-router-dom";
 
-const oemInputs = [
-  "CAD files",
-  "Technical drawings",
-  "Product samples",
-  "Design specifications",
+const oemCapabilities = [
+  "Manufacturing based on customer-provided designs",
+  "CAD file and technical drawing interpretation",
+  "Custom logo engraving and branding",
+  "Stainless steel, brass, and alloy jewelry production",
+  "Gold, silver, black, PVD, and rose gold finishes",
+  "Stone setting and decorative detailing",
+  "Custom packaging and private-label solutions",
+  "Quality control and production management",
 ] as const;
 
-const oemServices = [
-  "Manufacturing based on customer designs",
-  "Custom logo engraving",
-  "Custom packaging",
-  "Material and finish customization",
-  "Gold, silver, black, and rose gold plating options",
-  "Quality inspection and production management",
-] as const;
-
-const odmSupport = [
-  "Trend research",
-  "Design development",
-  "3D CAD creation",
-  "Prototype production",
-  "Collection development",
-  "Material and finish recommendations",
+const odmDevelopmentServices = [
+  "Trend and market research",
+  "Jewelry concept and collection development",
+  "Custom design creation",
+  "3D CAD modeling and technical drawings",
+  "Prototype and sample production",
+  "Material, plating, and stone recommendations",
+  "Branding and packaging consultation",
+  "Production planning and manufacturing support",
 ] as const;
 
 const developmentSteps = [
@@ -96,6 +93,10 @@ const partnerReasons = [
     title: "Global Export Experience",
     body: "Serving customers across North America, Europe, Australia, and other international markets.",
   },
+  {
+    title: "Flexible Packaging Options",
+    body: "Custom boxes, branding, and retail-ready packaging tailored to your collection and market.",
+  },
 ] as const;
 
 const productCategories = [
@@ -110,15 +111,20 @@ const productCategories = [
   "Fashion Jewelry Collections",
 ] as const;
 
-function CheckList({ items }: { items: readonly string[] }) {
+function CapabilityList({ items, columns = 1 }: { items: readonly string[]; columns?: 1 | 2 }) {
   return (
-    <ul className="mt-6 space-y-3">
+    <ul
+      className={[
+        "mt-6 gap-x-8 gap-y-3",
+        columns === 2 ? "grid sm:grid-cols-2" : "space-y-3",
+      ].join(" ")}
+    >
       {items.map((item) => (
         <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-aura-stone sm:text-base">
-          <span className="mt-1.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-aura-gold/40 bg-aura-porcelain text-[10px] font-semibold text-aura-gold">
+          <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-aura-black text-[11px] font-semibold text-aura-gold-soft">
             ✓
           </span>
-          {item}
+          <span>{item}</span>
         </li>
       ))}
     </ul>
@@ -161,68 +167,45 @@ export function CustomManufacturing() {
         </div>
       </section>
 
-      {/* OEM */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-aura-gold">OEM</p>
-            <h2 className="mt-3 font-display text-3xl font-medium tracking-normal text-aura-black sm:text-4xl">
-              OEM Jewelry Manufacturing
-            </h2>
-            <p className="mt-2 font-display text-xl font-medium text-aura-gold">Bring Your Existing Designs to Life</p>
-            <p className="mt-6 text-base leading-relaxed text-aura-stone sm:text-lg">
-              Our OEM service is ideal for brands that already have:
-            </p>
-            <CheckList items={oemInputs} />
-            <p className="mt-8 text-base leading-relaxed text-aura-stone sm:text-lg">
-              We manufacture according to your requirements while ensuring consistent quality, precision
-              craftsmanship, and reliable production timelines.
-            </p>
-          </div>
-          <div className="rounded-3xl border border-aura-line bg-aura-porcelain/60 p-8 shadow-sm ring-1 ring-black/[0.04] sm:p-10">
-            <h3 className="font-display text-xl font-medium text-aura-black sm:text-2xl">OEM Services Include:</h3>
-            <CheckList items={oemServices} />
-          </div>
-        </div>
-      </section>
-
-      {/* ODM */}
-      <section className="border-y border-aura-line bg-aura-porcelain/50 py-16 sm:py-20">
+      {/* OEM & ODM */}
+      <section className="border-y border-aura-line bg-aura-porcelain/40 py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
-            <div className="order-2 lg:order-1">
-              <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/[0.06]">
-                <img
-                  src="https://placehold.co/900x675/f7f6f4/958673?text=ODM+Design+Development"
-                  alt="Placeholder for ODM design and collection development"
-                  className="h-full w-full object-cover"
-                  width={900}
-                  height={675}
-                />
+          <article className="overflow-hidden rounded-3xl border border-aura-line bg-white shadow-sm ring-1 ring-black/[0.06]">
+            <div className="border-b border-aura-line bg-aura-black px-8 py-10 text-white sm:px-10 lg:px-14 lg:py-12">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-aura-gold-soft">Services</p>
+              <h2 className="mt-3 font-display text-3xl font-medium tracking-normal sm:text-4xl lg:text-[2.5rem]">
+                OEM &amp; ODM Manufacturing
+              </h2>
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/70 sm:text-lg">
+                Whether you bring finished designs or need full collection development, SteelAura supports both
+                manufacturing paths with structured capabilities on each side.
+              </p>
+            </div>
+            <div className="grid lg:grid-cols-2">
+              <div className="border-b border-aura-line px-8 py-10 sm:px-10 lg:border-b-0 lg:border-r lg:px-12 lg:py-12">
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-aura-gold">OEM</p>
+                <h3 className="mt-3 font-display text-2xl font-medium text-aura-black sm:text-3xl">
+                  OEM Jewelry Manufacturing
+                </h3>
+                <p className="mt-2 font-display text-lg font-medium text-aura-gold">
+                  Turn Your Existing Designs into Production
+                </p>
+                <p className="mt-6 font-display text-lg font-medium text-aura-black">OEM Capabilities</p>
+                <CapabilityList items={oemCapabilities} />
+              </div>
+              <div className="bg-aura-porcelain/40 px-8 py-10 sm:px-10 lg:px-12 lg:py-12">
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-aura-gold">ODM</p>
+                <h3 className="mt-3 font-display text-2xl font-medium text-aura-black sm:text-3xl">
+                  ODM Jewelry Manufacturing
+                </h3>
+                <p className="mt-2 font-display text-lg font-medium text-aura-gold">
+                  Create Exclusive Jewelry Collections
+                </p>
+                <p className="mt-6 font-display text-lg font-medium text-aura-black">ODM Development Services</p>
+                <CapabilityList items={odmDevelopmentServices} />
               </div>
             </div>
-            <div className="order-1 lg:order-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-aura-gold">ODM</p>
-              <h2 className="mt-3 font-display text-3xl font-medium tracking-normal text-aura-black sm:text-4xl">
-                ODM Jewelry Manufacturing
-              </h2>
-              <p className="mt-2 font-display text-xl font-medium text-aura-gold">
-                Develop Unique Jewelry Collections
-              </p>
-              <p className="mt-6 text-base leading-relaxed text-aura-stone sm:text-lg">
-                For customers who do not have finished designs, our ODM service provides complete product
-                development support.
-              </p>
-              <p className="mt-4 text-base leading-relaxed text-aura-stone sm:text-lg">
-                Our design team can assist with:
-              </p>
-              <CheckList items={odmSupport} />
-              <p className="mt-8 text-base leading-relaxed text-aura-stone sm:text-lg">
-                From concept sketches to final production, we help transform ideas into commercially successful
-                jewelry collections.
-              </p>
-            </div>
-          </div>
+          </article>
         </div>
       </section>
 
