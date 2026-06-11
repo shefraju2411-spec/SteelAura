@@ -9,10 +9,15 @@ import { QualityControl } from "./pages/QualityControl";
 import { Contact } from "./pages/Contact";
 import { PackagingBranding } from "./pages/PackagingBranding";
 import { Gallery } from "./pages/Gallery";
+import { LandingLayout } from "./components/LandingLayout";
+import { OemLanding } from "./pages/lp/OemLanding";
 
 export default function App() {
   return (
     <Routes>
+      <Route element={<LandingLayout />}>
+        <Route path="/lp/oem" element={<OemLanding />} />
+      </Route>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

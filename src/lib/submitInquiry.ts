@@ -4,6 +4,7 @@ export type InquiryPayload = {
   phone: string;
   country: string;
   message: string;
+  source?: string;
 };
 
 type Web3FormsResponse = {
@@ -20,9 +21,11 @@ export async function submitInquiry(data: InquiryPayload): Promise<void> {
     );
   }
 
+  const subjectSource = data.source ? ` (${data.source})` : "";
+
   const body = {
     access_key: accessKey,
-    subject: `New inquiry from ${data.name} — SteelAura Jewelry`,
+    subject: `New inquiry from ${data.name} — SteelAura Jewelry${subjectSource}`,
     from_name: data.name,
     name: data.name,
     email: data.email,
@@ -30,6 +33,7 @@ export async function submitInquiry(data: InquiryPayload): Promise<void> {
     phone: data.phone,
     country: data.country,
     message: data.message,
+    source: data.source ?? "Main website",
     botcheck: "",
   };
 

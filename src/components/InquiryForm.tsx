@@ -4,9 +4,10 @@ import { submitInquiry } from "../lib/submitInquiry";
 type InquiryFormProps = {
   id?: string;
   className?: string;
+  source?: string;
 };
 
-export function InquiryForm({ id = "inquiry", className = "" }: InquiryFormProps) {
+export function InquiryForm({ id = "inquiry", className = "", source }: InquiryFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -26,6 +27,7 @@ export function InquiryForm({ id = "inquiry", className = "" }: InquiryFormProps
         phone: String(formData.get("phone") ?? "").trim(),
         country: String(formData.get("country") ?? "").trim(),
         message: String(formData.get("message") ?? "").trim(),
+        source,
       });
       setSubmitted(true);
       form.reset();
