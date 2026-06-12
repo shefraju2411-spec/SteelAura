@@ -4,13 +4,14 @@ import { InquiryForm } from "../../components/InquiryForm";
 const WHATSAPP_URL = "https://wa.me/8613305631958";
 
 const oemCapabilities = [
-  "Manufacturing based on your designs, CAD files, and technical drawings",
+  "Manufacturing based on your designs, reference images, CAD files, or technical drawings",
   "Stainless steel, brass, and alloy jewelry production",
   "Gold, silver, black, PVD, and rose gold plating finishes",
   "Custom logo engraving and private-label branding",
   "Stone setting and decorative detailing",
   "Quality control and production management",
-  "Custom packaging and export-ready fulfillment",
+  "Custom packaging",
+  "Export-ready shipment",
 ] as const;
 
 const benefits = [
@@ -123,8 +124,8 @@ export function OemLanding() {
             Your designs → production, QC, and export
           </p>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
-            SteelAura manufactures stainless steel jewelry from your existing designs — with sampling,
-            plating, branding, quality control, and worldwide shipping for brands and wholesalers.
+            SteelAura manufactures stainless steel jewelry from your designs — with sampling, plating,
+            branding, quality control, and worldwide shipping for brands and wholesalers.
           </p>
           <p className="mt-4 text-sm font-medium tracking-wide text-aura-gold-soft">
             Export support · Quality control · Private label · Flexible MOQ
@@ -154,7 +155,7 @@ export function OemLanding() {
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-aura-gold">OEM Capabilities</p>
             <h2 className="mt-3 font-display text-3xl font-medium tracking-normal text-aura-black sm:text-4xl">
-              Turn Your Existing Designs into Production
+              Turn Your Designs into Production
             </h2>
           </div>
           <ul className="mt-12 grid gap-4 sm:grid-cols-2">
@@ -245,7 +246,7 @@ export function OemLanding() {
             </h2>
             <p className="mt-4 text-base leading-relaxed text-aura-stone">
               Share your product type, estimated quantity, finishes, and timeline. Our team responds within
-              1–2 business days.
+              24 business hours.
             </p>
           </div>
           <InquiryForm id="inquiry" source="OEM Landing Page (/lp/oem)" />
