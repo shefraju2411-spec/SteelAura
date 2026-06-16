@@ -11,12 +11,14 @@ import { PackagingBranding } from "./pages/PackagingBranding";
 import { Gallery } from "./pages/Gallery";
 import { LandingLayout } from "./components/LandingLayout";
 import { OemLanding } from "./pages/lp/OemLanding";
+import { QualityLanding } from "./pages/lp/QualityLanding";
 
 export default function App() {
   return (
     <Routes>
       <Route element={<LandingLayout />}>
         <Route path="/lp/oem" element={<OemLanding />} />
+        <Route path="/lp/quality" element={<QualityLanding />} />
       </Route>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
