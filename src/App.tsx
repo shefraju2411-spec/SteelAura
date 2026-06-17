@@ -12,6 +12,7 @@ import { Gallery } from "./pages/Gallery";
 import { LandingLayout } from "./components/LandingLayout";
 import { OemLanding } from "./pages/lp/OemLanding";
 import { QualityLanding } from "./pages/lp/QualityLanding";
+import { WholesaleLanding } from "./pages/lp/WholesaleLanding";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
       <Route element={<LandingLayout />}>
         <Route path="/lp/oem" element={<OemLanding />} />
         <Route path="/lp/quality" element={<QualityLanding />} />
+        <Route path="/lp/wholesale" element={<WholesaleLanding />} />
       </Route>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
