@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { submitInquiry } from "../lib/submitInquiry";
 
+const WHATSAPP_URL = "https://wa.me/8613305631958";
+
 type InquiryFormProps = {
   id?: string;
   className?: string;
@@ -21,14 +23,13 @@ export function InquiryForm({ id = "inquiry", className = "", source }: InquiryF
     const formData = new FormData(form);
 
     try {
-      await submitInquiry({
-        name: String(formData.get("name") ?? "").trim(),
-        email: String(formData.get("email") ?? "").trim(),
-        phone: String(formData.get("phone") ?? "").trim(),
-        country: String(formData.get("country") ?? "").trim(),
-        message: String(formData.get("message") ?? "").trim(),
-        source,
-      });
+      if (formData.get("botcheck")) {
+        setSubmitted(true);
+        form.reset();
+        return;
+      }
+
+      await submitInquiry(form, { source });
       setSubmitted(true);
       form.reset();
     } catch (err) {
@@ -89,7 +90,14 @@ export function InquiryForm({ id = "inquiry", className = "", source }: InquiryF
       ) : null}
 
       {/* Honeypot — hidden from users, blocks bots (Web3Forms) */}
-      <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
+      <input
+        type="checkbox"
+        name="botcheck"
+        tabIndex={-1}
+        autoComplete="off"
+        style={{ display: "none" }}
+        aria-hidden="true"
+      />
 
       <div className="mt-8 grid gap-5 sm:grid-cols-2">
         <label className="block sm:col-span-1">
@@ -159,13 +167,23 @@ export function InquiryForm({ id = "inquiry", className = "", source }: InquiryF
         </label>
       </div>
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="mt-8 w-full rounded-full bg-aura-black px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-black/88 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
-      >
-        {isSubmitting ? "Sending…" : "Submit inquiry"}
-      </button>
+      <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full rounded-full bg-aura-black px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-black/88 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+        >
+          {isSubmitting ? "Sending…" : "Submit inquiry"}
+        </button>
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex w-full items-center justify-center rounded-full border border-aura-line bg-white px-6 py-3.5 text-sm font-semibold text-aura-black transition hover:border-aura-gold/50 hover:text-aura-gold sm:w-auto"
+        >
+          If form doesn&apos;t submit, get in touch on WhatsApp
+        </a>
+      </div>
     </form>
   );
 }
