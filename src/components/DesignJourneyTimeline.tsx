@@ -54,8 +54,11 @@ export function DesignJourneyTimeline({ steps }: DesignJourneyTimelineProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const scrollToStep = (index: number) => {
+    const step = steps[index];
+    if (!step) return;
+
     setActiveIndex(index);
-    document.getElementById(`design-journey-step-${steps[index].step}`)?.scrollIntoView({
+    document.getElementById(`design-journey-step-${step.step}`)?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
