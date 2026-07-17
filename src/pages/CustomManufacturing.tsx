@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const oemCapabilities = [
   "Manufacturing based on customer-provided designs",
@@ -132,6 +133,14 @@ function CapabilityList({ items, columns = 1 }: { items: readonly string[]; colu
 }
 
 export function CustomManufacturing() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      document.querySelector(hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [hash]);
+
   return (
     <div className="bg-white">
       {/* Hero */}
@@ -210,7 +219,7 @@ export function CustomManufacturing() {
       </section>
 
       {/* Development process */}
-      <section className="bg-aura-black py-16 text-white sm:py-20">
+      <section id="development-process" className="scroll-mt-24 bg-aura-black py-16 text-white sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-aura-gold-soft">Workflow</p>

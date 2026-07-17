@@ -270,6 +270,126 @@ const manufacturingRiskCards = [
   },
 ] as const;
 
+const transparencyProofCards = [
+  {
+    title: "Manufacturing Consultation Before Production",
+    body: [
+      "Before any order begins, we review your project requirements, discuss manufacturing feasibility, recommend suitable materials and finishes, and identify any potential technical considerations.",
+      "This helps avoid surprises later in the project.",
+    ],
+  },
+  {
+    title: "Sample Approval Before Mass Production",
+    body: [
+      "We don't move directly into bulk production.",
+      "Every project begins with sample development and approval, allowing you to verify quality, finishing, dimensions, and overall appearance before manufacturing starts.",
+    ],
+  },
+  {
+    title: "Production Updates",
+    body: [
+      "During production, we keep you informed with regular updates so you always know how your project is progressing.",
+      "Communication doesn't stop once production begins.",
+    ],
+  },
+  {
+    title: "Final Quality Inspection",
+    body: [
+      "Before shipment, every order undergoes a final quality inspection covering workmanship, finishing, logo accuracy, packaging, and overall presentation.",
+      "Only after inspection is complete is the order prepared for export.",
+    ],
+  },
+] as const;
+
+const factoryGalleryImages = [
+  {
+    src: "/gallery/factory-01.jpg",
+    fallback: "/images/Craftsmanship/CNC.PNG",
+    alt: "SteelAura factory CNC production",
+  },
+  {
+    src: "/gallery/factory-02.jpg",
+    fallback: "/images/Craftsmanship/mold.jpeg",
+    alt: "Jewelry mold development",
+  },
+  {
+    src: "/gallery/factory-03.jpg",
+    fallback: "/images/Craftsmanship/polish.jpeg",
+    alt: "Polishing and finishing workshop",
+  },
+  {
+    src: "/gallery/factory-04.jpg",
+    fallback: "/images/Craftsmanship/stamping.PNG",
+    alt: "Stamping and jewelry production",
+  },
+  {
+    src: "/gallery/factory-05.jpg",
+    fallback: "/images/Craftsmanship/precision.PNG",
+    alt: "Precision manufacturing process",
+  },
+  {
+    src: "/gallery/factory-06.jpg",
+    fallback: "/images/quality.png",
+    alt: "Quality inspection and factory team",
+  },
+] as const;
+
+const manufacturingStats = [
+  { value: "2,000+", label: "Ready Stock Designs" },
+  { value: "OEM", label: "Custom Manufacturing Support" },
+  { value: "Worldwide", label: "Export Support" },
+  { value: "From Sample", label: "To Bulk Production" },
+] as const;
+
+const projectDeliverables = [
+  "Manufacturing feasibility review",
+  "Material recommendations",
+  "Transparent quotation",
+  "Sample development",
+  "Production progress updates",
+  "Quality inspection before shipment",
+  "Export support",
+  "Ongoing assistance for repeat orders",
+] as const;
+
+const processSafeguards = [
+  "Confirming specifications before production",
+  "Approving samples before bulk manufacturing",
+  "Monitoring quality throughout production",
+  "Inspecting products before shipment",
+  "Maintaining clear communication from start to finish",
+] as const;
+
+function FactoryGalleryImage({
+  src,
+  fallback,
+  alt,
+}: {
+  src: string;
+  fallback: string;
+  alt: string;
+}) {
+  return (
+    <figure className="group overflow-hidden rounded-2xl border border-aura-line bg-white shadow-sm ring-1 ring-black/[0.04]">
+      <div className="aspect-[4/3] overflow-hidden bg-aura-porcelain">
+        <img
+          src={src}
+          alt={alt}
+          className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+          loading="lazy"
+          onError={(e) => {
+            const img = e.currentTarget;
+            if (!img.dataset.fallbackUsed) {
+              img.dataset.fallbackUsed = "true";
+              img.src = fallback;
+            }
+          }}
+        />
+      </div>
+    </figure>
+  );
+}
+
 export function OemLanding() {
   useEffect(() => {
     document.title =
@@ -648,9 +768,8 @@ export function OemLanding() {
               You&apos;re Building a Brand.
             </p>
             <p className="mt-6 text-base leading-relaxed text-aura-stone sm:text-lg">
-              Your customers don&apos;t see your factory. They only see the quality of the products carrying
-              your brand name. That&apos;s why choosing the right manufacturing partner is one of the most
-              important decisions you&apos;ll make.
+              Your customers see the quality of the products carrying your brand name. That&apos;s why
+              choosing the right manufacturing partner is one of the most important decisions you&apos;ll make.
             </p>
           </div>
 
@@ -670,6 +789,120 @@ export function OemLanding() {
             >
               Start My OEM Project
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Transparency */}
+      <section className="border-t border-aura-line bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-aura-gold">Transparency</p>
+            <h2 className="mt-3 font-display text-3xl font-medium tracking-normal text-aura-black sm:text-4xl lg:text-[2.5rem]">
+              Every Manufacturing Project Is Built Around Transparency
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-aura-stone sm:text-lg">
+              Choosing a manufacturing partner is a significant business decision. That&apos;s why we believe in
+              making every stage of the project as transparent as possible—from your first inquiry to the final
+              shipment.
+            </p>
+          </div>
+
+          <ul className="mt-14 grid gap-6 sm:grid-cols-2">
+            {transparencyProofCards.map(({ title, body }) => (
+              <li
+                key={title}
+                className="rounded-2xl border border-aura-line bg-aura-porcelain/30 p-6 shadow-sm ring-1 ring-black/[0.04] sm:p-8"
+              >
+                <h3 className="font-display text-xl font-medium text-aura-black">{title}</h3>
+                {body.map((paragraph) => (
+                  <p key={paragraph} className="mt-3 text-sm leading-relaxed text-aura-stone sm:text-base">
+                    {paragraph}
+                  </p>
+                ))}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-16">
+            <div className="text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-aura-gold">Factory</p>
+              <h3 className="mt-3 font-display text-2xl font-medium text-aura-black sm:text-3xl">
+                Behind Every Collection Is a Manufacturing Team
+              </h3>
+              <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-aura-stone sm:text-base">
+                A look inside our production environment — from development and finishing to quality checks and
+                export preparation.
+              </p>
+            </div>
+            <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {factoryGalleryImages.map((image) => (
+                <li key={image.src}>
+                  <FactoryGalleryImage {...image} />
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-16 rounded-2xl border border-aura-line bg-aura-black px-6 py-10 text-white sm:px-10 sm:py-12">
+            <h3 className="text-center font-display text-2xl font-medium sm:text-3xl">Manufacturing at a Glance</h3>
+            <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {manufacturingStats.map(({ value, label }) => (
+                <li
+                  key={label}
+                  className="rounded-xl border border-white/10 bg-white/5 px-5 py-6 text-center backdrop-blur-sm"
+                >
+                  <p className="font-display text-3xl font-medium text-aura-gold-soft sm:text-4xl">{value}</p>
+                  <p className="mt-2 text-sm leading-snug text-white/75 sm:text-base">{label}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-16 grid gap-8 lg:grid-cols-2">
+            <article className="rounded-2xl border border-aura-line bg-white p-6 shadow-sm ring-1 ring-black/[0.04] sm:p-8">
+              <h3 className="font-display text-xl font-medium text-aura-black sm:text-2xl">
+                What You&apos;ll Receive Throughout Your Project
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-aura-stone sm:text-base">
+                During your project you&apos;ll receive:
+              </p>
+              <ul className="mt-6 space-y-3">
+                {projectDeliverables.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-aura-stone sm:text-base"
+                  >
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-aura-black text-[10px] font-semibold text-aura-gold-soft">
+                      ✓
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+
+            <article className="rounded-2xl border border-aura-line bg-aura-porcelain/50 p-6 sm:p-8">
+              <h3 className="font-display text-xl font-medium text-aura-black sm:text-2xl">
+                Structured Development Process
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-aura-stone sm:text-base">
+                Our structured development process is designed to help reduce common risks by:
+              </p>
+              <ul className="mt-6 space-y-3">
+                {processSafeguards.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-aura-stone sm:text-base"
+                  >
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-aura-black text-[10px] font-semibold text-aura-gold-soft">
+                      ✓
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
           </div>
         </div>
       </section>
