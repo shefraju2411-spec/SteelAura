@@ -33,8 +33,18 @@ export function Footer({ navLinkClass }: { navLinkClass: NavLinkClass }) {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/resources" className={navLinkClass}>
+                  Resources
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/quality" className={navLinkClass}>
                   Craftsmanship
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/blog" className={navLinkClass}>
+                  Blog
                 </NavLink>
               </li>
               <li>

@@ -1,28 +1,40 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
-const oemOdmChildren = [
-  { to: "/oem-odm", label: "OEM & ODM Overview", end: true },
-  { to: "/oem-odm/private-label-jewelry", label: "Private Label Jewelry", end: false },
-] as const;
+type NavChild = {
+  to: string;
+  label: string;
+  end?: boolean;
+};
 
-const links = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About Us" },
-  { to: "/wholesale-jewelry", label: "Wholesale Jewelry" },
-  { to: "/packaging-branding", label: "Packaging" },
+const oemOdmChildren: readonly NavChild[] = [
+  { to: "/oem-odm", label: "OEM & ODM Overview", end: true },
+  { to: "/oem-odm/private-label-jewelry", label: "Private Label Jewelry" },
+];
+
+const resourcesChildren: readonly NavChild[] = [
+  { to: "/resources", label: "Resources Overview", end: true },
   { to: "/quality", label: "Craftsmanship" },
-  { to: "/resources", label: "Resources" },
-  { to: "/contact", label: "Contact" },
-] as const;
+  { to: "/blog", label: "Blog" },
+];
 
 type NavLinkClass = (props: { isActive: boolean }) => string;
 
-function OemOdmDesktopMenu({ navLinkClass }: { navLinkClass: NavLinkClass }) {
+function DesktopDropdown({
+  label,
+  overviewTo,
+  items,
+  isSectionActive,
+  navLinkClass,
+}: {
+  label: ReactNode;
+  overviewTo: string;
+  items: readonly NavChild[];
+  isSectionActive: boolean;
+  navLinkClass: NavLinkClass;
+}) {
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const { pathname } = useLocation();
-  const isActive = pathname === "/oem-odm" || pathname.startsWith("/oem-odm/");
 
   const clearCloseTimer = () => {
     if (closeTimer.current) {
@@ -48,17 +60,12 @@ function OemOdmDesktopMenu({ navLinkClass }: { navLinkClass: NavLinkClass }) {
       onMouseLeave={scheduleClose}
     >
       <NavLink
-        to="/oem-odm"
-        className={() =>
-          [
-            navLinkClass({ isActive }),
-            "inline-flex items-center gap-1",
-          ].join(" ")
-        }
+        to={overviewTo}
+        className={() => [navLinkClass({ isActive: isSectionActive }), "inline-flex items-center gap-1"].join(" ")}
         aria-expanded={open}
         aria-haspopup="true"
       >
-        OEM &amp; ODM
+        {label}
         <svg className="h-3.5 w-3.5 opacity-70" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
           <path
             fillRule="evenodd"
@@ -70,7 +77,7 @@ function OemOdmDesktopMenu({ navLinkClass }: { navLinkClass: NavLinkClass }) {
       {open ? (
         <div className="absolute left-0 top-full z-50 pt-3">
           <ul className="min-w-[15rem] rounded-xl border border-aura-line bg-white py-2 shadow-lg ring-1 ring-black/[0.04]">
-            {oemOdmChildren.map(({ to, label, end }) => (
+            {items.map(({ to, label: childLabel, end }) => (
               <li key={to}>
                 <NavLink
                   to={to}
@@ -85,7 +92,7 @@ function OemOdmDesktopMenu({ navLinkClass }: { navLinkClass: NavLinkClass }) {
                   }
                   onClick={() => setOpen(false)}
                 >
-                  {label}
+                  {childLabel}
                 </NavLink>
               </li>
             ))}
@@ -96,20 +103,82 @@ function OemOdmDesktopMenu({ navLinkClass }: { navLinkClass: NavLinkClass }) {
   );
 }
 
+function MobileDropdown({
+  label,
+  isSectionActive,
+  items,
+  onNavigate,
+}: {
+  label: ReactNode;
+  isSectionActive: boolean;
+  items: readonly NavChild[];
+  onNavigate: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div>
+      <button
+        type="button"
+        className={[
+          "flex w-full items-center justify-between rounded-md px-3 py-3 text-left text-base font-medium",
+          isSectionActive ? "bg-aura-porcelain text-aura-gold" : "text-aura-black",
+        ].join(" ")}
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+      >
+        {label}
+        <svg
+          className={["h-4 w-4 transition", open ? "rotate-180" : ""].join(" ")}
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden
+        >
+          <path
+            fillRule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </button>
+      {open ? (
+        <ul className="mb-1 ml-3 space-y-1 border-l border-aura-line pl-3">
+          {items.map(({ to, label: childLabel, end }) => (
+            <li key={to}>
+              <NavLink
+                to={to}
+                end={end}
+                className={({ isActive }) =>
+                  [
+                    "block rounded-md px-3 py-2.5 text-sm font-medium",
+                    isActive ? "bg-aura-porcelain text-aura-gold" : "text-aura-stone",
+                  ].join(" ")
+                }
+                onClick={onNavigate}
+              >
+                {childLabel}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
+
 export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
   const [open, setOpen] = useState(false);
-  const [oemMobileOpen, setOemMobileOpen] = useState(false);
   const { pathname } = useLocation();
   const oemActive = pathname === "/oem-odm" || pathname.startsWith("/oem-odm/");
+  const resourcesActive =
+    pathname === "/resources" || pathname === "/quality" || pathname === "/blog" || pathname.startsWith("/blog/");
+
+  const closeMobile = () => setOpen(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-aura-line bg-white/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <NavLink
-          to="/"
-          className="group flex shrink-0 items-baseline gap-1"
-          onClick={() => setOpen(false)}
-        >
+        <NavLink to="/" className="group flex shrink-0 items-baseline gap-1" onClick={closeMobile}>
           <span className="font-display text-xl font-medium tracking-normal text-aura-black sm:text-2xl">
             SteelAura
           </span>
@@ -119,23 +188,41 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
         </NavLink>
 
         <nav className="hidden items-center gap-5 lg:gap-7 md:flex" aria-label="Main">
-          {links.slice(0, 2).map(({ to, label }) => (
-            <NavLink key={to} to={to} className={navLinkClass} end={to === "/"}>
-              {label}
-            </NavLink>
-          ))}
-          <OemOdmDesktopMenu navLinkClass={navLinkClass} />
-          {links.slice(2).map(({ to, label }) => (
-            <NavLink key={to} to={to} className={navLinkClass}>
-              {label}
-            </NavLink>
-          ))}
+          <NavLink to="/" className={navLinkClass} end>
+            Home
+          </NavLink>
+          <NavLink to="/about" className={navLinkClass}>
+            About Us
+          </NavLink>
+          <DesktopDropdown
+            label="OEM & ODM"
+            overviewTo="/oem-odm"
+            items={oemOdmChildren}
+            isSectionActive={oemActive}
+            navLinkClass={navLinkClass}
+          />
+          <NavLink to="/wholesale-jewelry" className={navLinkClass}>
+            Wholesale Jewelry
+          </NavLink>
+          <NavLink to="/packaging-branding" className={navLinkClass}>
+            Packaging
+          </NavLink>
+          <DesktopDropdown
+            label="Resources"
+            overviewTo="/resources"
+            items={resourcesChildren}
+            isSectionActive={resourcesActive}
+            navLinkClass={navLinkClass}
+          />
+          <NavLink to="/contact" className={navLinkClass}>
+            Contact
+          </NavLink>
         </nav>
 
         <NavLink
           to="/contact#inquiry"
           className="hidden rounded-full bg-aura-black px-5 py-2 text-sm font-medium text-white transition hover:bg-aura-black/90 md:inline-block"
-          onClick={() => setOpen(false)}
+          onClick={closeMobile}
         >
           Get a free quote
         </NavLink>
@@ -163,89 +250,83 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
         className={["border-t border-aura-line bg-white md:hidden", open ? "block" : "hidden"].join(" ")}
       >
         <nav className="flex flex-col gap-1 px-4 py-4" aria-label="Mobile">
-          {links.slice(0, 2).map(({ to, label }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={({ isActive }) =>
-                [
-                  "rounded-md px-3 py-3 text-base font-medium",
-                  isActive ? "bg-aura-porcelain font-medium text-aura-gold" : "text-aura-black",
-                ].join(" ")
-              }
-              end={to === "/"}
-              onClick={() => setOpen(false)}
-            >
-              {label}
-            </NavLink>
-          ))}
-
-          <div>
-            <button
-              type="button"
-              className={[
-                "flex w-full items-center justify-between rounded-md px-3 py-3 text-left text-base font-medium",
-                oemActive ? "bg-aura-porcelain text-aura-gold" : "text-aura-black",
-              ].join(" ")}
-              aria-expanded={oemMobileOpen}
-              onClick={() => setOemMobileOpen((v) => !v)}
-            >
-              OEM &amp; ODM
-              <svg
-                className={["h-4 w-4 transition", oemMobileOpen ? "rotate-180" : ""].join(" ")}
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-            {oemMobileOpen ? (
-              <ul className="mb-1 ml-3 space-y-1 border-l border-aura-line pl-3">
-                {oemOdmChildren.map(({ to, label, end }) => (
-                  <li key={to}>
-                    <NavLink
-                      to={to}
-                      end={end}
-                      className={({ isActive }) =>
-                        [
-                          "block rounded-md px-3 py-2.5 text-sm font-medium",
-                          isActive ? "bg-aura-porcelain text-aura-gold" : "text-aura-stone",
-                        ].join(" ")
-                      }
-                      onClick={() => setOpen(false)}
-                    >
-                      {label}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-          </div>
-
-          {links.slice(2).map(({ to, label }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={({ isActive }) =>
-                [
-                  "rounded-md px-3 py-3 text-base font-medium",
-                  isActive ? "bg-aura-porcelain font-medium text-aura-gold" : "text-aura-black",
-                ].join(" ")
-              }
-              onClick={() => setOpen(false)}
-            >
-              {label}
-            </NavLink>
-          ))}
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) =>
+              [
+                "rounded-md px-3 py-3 text-base font-medium",
+                isActive ? "bg-aura-porcelain font-medium text-aura-gold" : "text-aura-black",
+              ].join(" ")
+            }
+            onClick={closeMobile}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              [
+                "rounded-md px-3 py-3 text-base font-medium",
+                isActive ? "bg-aura-porcelain font-medium text-aura-gold" : "text-aura-black",
+              ].join(" ")
+            }
+            onClick={closeMobile}
+          >
+            About Us
+          </NavLink>
+          <MobileDropdown
+            label="OEM & ODM"
+            isSectionActive={oemActive}
+            items={oemOdmChildren}
+            onNavigate={closeMobile}
+          />
+          <NavLink
+            to="/wholesale-jewelry"
+            className={({ isActive }) =>
+              [
+                "rounded-md px-3 py-3 text-base font-medium",
+                isActive ? "bg-aura-porcelain font-medium text-aura-gold" : "text-aura-black",
+              ].join(" ")
+            }
+            onClick={closeMobile}
+          >
+            Wholesale Jewelry
+          </NavLink>
+          <NavLink
+            to="/packaging-branding"
+            className={({ isActive }) =>
+              [
+                "rounded-md px-3 py-3 text-base font-medium",
+                isActive ? "bg-aura-porcelain font-medium text-aura-gold" : "text-aura-black",
+              ].join(" ")
+            }
+            onClick={closeMobile}
+          >
+            Packaging
+          </NavLink>
+          <MobileDropdown
+            label="Resources"
+            isSectionActive={resourcesActive}
+            items={resourcesChildren}
+            onNavigate={closeMobile}
+          />
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              [
+                "rounded-md px-3 py-3 text-base font-medium",
+                isActive ? "bg-aura-porcelain font-medium text-aura-gold" : "text-aura-black",
+              ].join(" ")
+            }
+            onClick={closeMobile}
+          >
+            Contact
+          </NavLink>
           <NavLink
             to="/contact#inquiry"
             className="mt-2 rounded-full bg-aura-black px-4 py-3 text-center text-sm font-medium text-white"
-            onClick={() => setOpen(false)}
+            onClick={closeMobile}
           >
             Get a free quote
           </NavLink>

@@ -11,6 +11,8 @@ import { PackagingBranding } from "./pages/PackagingBranding";
 import { Gallery } from "./pages/Gallery";
 import { WholesaleJewelry } from "./pages/WholesaleJewelry";
 import { Resources } from "./pages/Resources";
+import { Blog } from "./pages/Blog";
+import { WhyStainlessSteelFashionJewelry } from "./pages/blog/WhyStainlessSteelFashionJewelry";
 import { PrivateLabelJewelry } from "./pages/PrivateLabelJewelry";
 import { LandingLayout } from "./components/LandingLayout";
 import { OemLanding } from "./pages/lp/OemLanding";
@@ -37,6 +39,11 @@ export default function App() {
         <Route path="/packaging-branding" element={<PackagingBranding />} />
         <Route path="/quality" element={<QualityControl />} />
         <Route path="/resources" element={<Resources />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route
+          path="/blog/why-stainless-steel-fashion-jewelry"
+          element={<WhyStainlessSteelFashionJewelry />}
+        />
         <Route path="/contact" element={<Contact />} />
       </Route>
     </Routes>
