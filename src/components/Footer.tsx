@@ -19,7 +19,7 @@ export function Footer({ navLinkClass }: { navLinkClass: NavLinkClass }) {
             <ul className="mt-4 space-y-2">
               <li>
                 <NavLink to="/oem-odm" className={navLinkClass}>
-                  OEM & ODM
+                  OEM Manufacturing
                 </NavLink>
               </li>
               <li>
@@ -30,11 +30,6 @@ export function Footer({ navLinkClass }: { navLinkClass: NavLinkClass }) {
               <li>
                 <NavLink to="/packaging-branding" className={navLinkClass}>
                   Packaging
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/resources" className={navLinkClass}>
-                  Resources
                 </NavLink>
               </li>
               <li>

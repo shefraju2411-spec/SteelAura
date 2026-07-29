@@ -8,12 +8,11 @@ type NavChild = {
 };
 
 const oemOdmChildren: readonly NavChild[] = [
-  { to: "/oem-odm", label: "OEM & ODM Overview", end: true },
+  { to: "/oem-odm", label: "OEM Manufacturing Overview", end: true },
   { to: "/oem-odm/private-label-jewelry", label: "Private Label Jewelry" },
 ];
 
 const resourcesChildren: readonly NavChild[] = [
-  { to: "/resources", label: "Resources Overview", end: true },
   { to: "/quality", label: "Craftsmanship" },
   { to: "/blog", label: "Blog" },
 ];
@@ -195,7 +194,7 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
             About Us
           </NavLink>
           <DesktopDropdown
-            label="OEM & ODM"
+            label="OEM Manufacturing"
             overviewTo="/oem-odm"
             items={oemOdmChildren}
             isSectionActive={oemActive}
@@ -276,7 +275,7 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
             About Us
           </NavLink>
           <MobileDropdown
-            label="OEM & ODM"
+            label="OEM Manufacturing"
             isSectionActive={oemActive}
             items={oemOdmChildren}
             onNavigate={closeMobile}
