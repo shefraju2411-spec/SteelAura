@@ -9,6 +9,9 @@ import { QualityControl } from "./pages/QualityControl";
 import { Contact } from "./pages/Contact";
 import { PackagingBranding } from "./pages/PackagingBranding";
 import { Gallery } from "./pages/Gallery";
+import { WholesaleJewelry } from "./pages/WholesaleJewelry";
+import { Resources } from "./pages/Resources";
+import { PrivateLabelJewelry } from "./pages/PrivateLabelJewelry";
 import { LandingLayout } from "./components/LandingLayout";
 import { OemLanding } from "./pages/lp/OemLanding";
 import { QualityLanding } from "./pages/lp/QualityLanding";
@@ -29,8 +32,11 @@ export default function App() {
         <Route path="/our-company" element={<OurCompany />} />
         <Route path="/products" element={<Products />} />
         <Route path="/oem-odm" element={<CustomManufacturing />} />
+        <Route path="/oem-odm/private-label-jewelry" element={<PrivateLabelJewelry />} />
+        <Route path="/wholesale-jewelry" element={<WholesaleJewelry />} />
         <Route path="/packaging-branding" element={<PackagingBranding />} />
         <Route path="/quality" element={<QualityControl />} />
+        <Route path="/resources" element={<Resources />} />
         <Route path="/contact" element={<Contact />} />
       </Route>
     </Routes>

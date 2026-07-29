@@ -23,6 +23,11 @@ export function Footer({ navLinkClass }: { navLinkClass: NavLinkClass }) {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/oem-odm/private-label-jewelry" className={navLinkClass}>
+                  Private Label Jewelry
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/packaging-branding" className={navLinkClass}>
                   Packaging
                 </NavLink>

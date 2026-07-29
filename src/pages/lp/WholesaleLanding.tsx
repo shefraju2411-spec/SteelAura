@@ -206,8 +206,8 @@ const processGalleryImages = [
   {
     src: "/gallery/process-warehouse.jpg",
     fallback: "/images/Craftsmanship/precision.PNG",
-    alt: "Ready-stock jewelry storage area",
-    caption: "Warehouse",
+    alt: "CNC fiber laser cutting stainless steel jewelry",
+    caption: "Laser Cutting (CNC Fiber Laser Cutting)",
   },
   {
     src: "/gallery/process-cartons.jpg",
