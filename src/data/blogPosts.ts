@@ -10,6 +10,16 @@ export type BlogPostMeta = {
 
 export const blogPosts: readonly BlogPostMeta[] = [
   {
+    slug: "304-vs-316l-stainless-steel-jewelry",
+    title: "304 vs 316L Stainless Steel Jewelry: What's the Difference?",
+    excerpt:
+      "Both 304 and 316L stainless steel are durable choices for fashion jewelry — but they differ in corrosion resistance, everyday wear performance, and suitability for sensitive skin.",
+    publishedAt: "2026-07-31",
+    readTime: "10 min read",
+    coverImage: "/images/rings.png",
+    coverAlt: "Stainless steel rings illustrating fashion jewelry materials",
+  },
+  {
     slug: "why-stainless-steel-fashion-jewelry",
     title: "Why Stainless Steel Has Become the Preferred Material for Fashion Jewelry",
     excerpt:

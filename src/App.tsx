@@ -12,7 +12,9 @@ import { Gallery } from "./pages/Gallery";
 import { WholesaleJewelry } from "./pages/WholesaleJewelry";
 import { Resources } from "./pages/Resources";
 import { Blog } from "./pages/Blog";
+import { Faq } from "./pages/Faq";
 import { WhyStainlessSteelFashionJewelry } from "./pages/blog/WhyStainlessSteelFashionJewelry";
+import { Stainless304Vs316L } from "./pages/blog/Stainless304Vs316L";
 import { PrivateLabelJewelry } from "./pages/PrivateLabelJewelry";
 import { LandingLayout } from "./components/LandingLayout";
 import { OemLanding } from "./pages/lp/OemLanding";
@@ -44,6 +46,8 @@ export default function App() {
           path="/blog/why-stainless-steel-fashion-jewelry"
           element={<WhyStainlessSteelFashionJewelry />}
         />
+        <Route path="/blog/304-vs-316l-stainless-steel-jewelry" element={<Stainless304Vs316L />} />
+        <Route path="/faq" element={<Faq />} />
         <Route path="/contact" element={<Contact />} />
       </Route>
     </Routes>

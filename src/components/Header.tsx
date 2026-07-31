@@ -15,6 +15,7 @@ const oemOdmChildren: readonly NavChild[] = [
 const resourcesChildren: readonly NavChild[] = [
   { to: "/quality", label: "Craftsmanship" },
   { to: "/blog", label: "Blog" },
+  { to: "/faq", label: "FAQ" },
 ];
 
 type NavLinkClass = (props: { isActive: boolean }) => string;
@@ -170,7 +171,11 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
   const { pathname } = useLocation();
   const oemActive = pathname === "/oem-odm" || pathname.startsWith("/oem-odm/");
   const resourcesActive =
-    pathname === "/resources" || pathname === "/quality" || pathname === "/blog" || pathname.startsWith("/blog/");
+    pathname === "/resources" ||
+    pathname === "/quality" ||
+    pathname === "/blog" ||
+    pathname.startsWith("/blog/") ||
+    pathname === "/faq";
 
   const closeMobile = () => setOpen(false);
 

@@ -43,6 +43,11 @@ export function Footer({ navLinkClass }: { navLinkClass: NavLinkClass }) {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/faq" className={navLinkClass}>
+                  FAQ
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/contact" className={navLinkClass}>
                   Contact
                 </NavLink>
