@@ -35,7 +35,7 @@ export const faqCategories: readonly FaqCategory[] = [
         question: "Do you manufacture jewelry or are you a trading company?",
         answer: {
           paragraphs: [
-            "SteelAura works with qualified manufacturing partners and manages the entire production process, including supplier selection, product development, production follow-up, quality inspections, packaging, and logistics. Our goal is to provide customers with a single point of contact throughout the project.",
+            "SteelAura is a manufacturing facility based in China.",
           ],
         },
       },
@@ -240,7 +240,7 @@ export const faqCategories: readonly FaqCategory[] = [
         question: "Can you engrave my logo?",
         answer: {
           paragraphs: [
-            "Yes. Logo engraving options can be discussed during product development, subject to technical feasibility.",
+            "Yes. Logo engraving options are available, subject to technical feasibility.",
           ],
         },
       },
@@ -334,7 +334,6 @@ export const faqCategories: readonly FaqCategory[] = [
           paragraphs: ["Providing the following information helps us prepare an accurate quotation:"],
           bullets: [
             "Product images or drawings",
-            "Dimensions",
             "Material requirements",
             "Surface finish",
             "Estimated quantity",
@@ -349,7 +348,7 @@ export const faqCategories: readonly FaqCategory[] = [
         question: "Can I manufacture multiple jewelry styles in one project?",
         answer: {
           paragraphs: [
-            "This depends on the products involved and production planning. We can review your requirements and discuss suitable manufacturing arrangements.",
+            "Yes, we can manufacture different styles in one order. We can review your requirements and discuss suitable manufacturing arrangements.",
           ],
         },
       },
