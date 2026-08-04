@@ -10,6 +10,7 @@ import { Contact } from "./pages/Contact";
 import { PackagingBranding } from "./pages/PackagingBranding";
 import { Gallery } from "./pages/Gallery";
 import { WholesaleJewelry } from "./pages/WholesaleJewelry";
+import { WholesaleStainlessSteelRings } from "./pages/WholesaleStainlessSteelRings";
 import { Resources } from "./pages/Resources";
 import { Blog } from "./pages/Blog";
 import { Faq } from "./pages/Faq";
@@ -38,6 +39,10 @@ export default function App() {
         <Route path="/oem-odm" element={<CustomManufacturing />} />
         <Route path="/oem-odm/private-label-jewelry" element={<PrivateLabelJewelry />} />
         <Route path="/wholesale-jewelry" element={<WholesaleJewelry />} />
+        <Route
+          path="/wholesale-jewelry/stainless-steel-rings"
+          element={<WholesaleStainlessSteelRings />}
+        />
         <Route path="/packaging-branding" element={<PackagingBranding />} />
         <Route path="/quality" element={<QualityControl />} />
         <Route path="/resources" element={<Resources />} />

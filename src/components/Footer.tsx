@@ -28,6 +28,11 @@ export function Footer({ navLinkClass }: { navLinkClass: NavLinkClass }) {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/wholesale-jewelry/stainless-steel-rings" className={navLinkClass}>
+                  Wholesale Stainless Steel Rings
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/packaging-branding" className={navLinkClass}>
                   Packaging
                 </NavLink>

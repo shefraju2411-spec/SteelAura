@@ -12,6 +12,11 @@ const oemOdmChildren: readonly NavChild[] = [
   { to: "/oem-odm/private-label-jewelry", label: "Private Label Jewelry" },
 ];
 
+const wholesaleChildren: readonly NavChild[] = [
+  { to: "/wholesale-jewelry", label: "Wholesale Jewelry Overview", end: true },
+  { to: "/wholesale-jewelry/stainless-steel-rings", label: "Wholesale Stainless Steel Rings" },
+];
+
 const resourcesChildren: readonly NavChild[] = [
   { to: "/quality", label: "Craftsmanship" },
   { to: "/blog", label: "Blog" },
@@ -170,6 +175,8 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
   const oemActive = pathname === "/oem-odm" || pathname.startsWith("/oem-odm/");
+  const wholesaleActive =
+    pathname === "/wholesale-jewelry" || pathname.startsWith("/wholesale-jewelry/");
   const resourcesActive =
     pathname === "/resources" ||
     pathname === "/quality" ||
@@ -205,9 +212,13 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
             isSectionActive={oemActive}
             navLinkClass={navLinkClass}
           />
-          <NavLink to="/wholesale-jewelry" className={navLinkClass}>
-            Wholesale Jewelry
-          </NavLink>
+          <DesktopDropdown
+            label="Wholesale Jewelry"
+            overviewTo="/wholesale-jewelry"
+            items={wholesaleChildren}
+            isSectionActive={wholesaleActive}
+            navLinkClass={navLinkClass}
+          />
           <NavLink to="/packaging-branding" className={navLinkClass}>
             Packaging
           </NavLink>
@@ -285,18 +296,12 @@ export function Header({ navLinkClass }: { navLinkClass: NavLinkClass }) {
             items={oemOdmChildren}
             onNavigate={closeMobile}
           />
-          <NavLink
-            to="/wholesale-jewelry"
-            className={({ isActive }) =>
-              [
-                "rounded-md px-3 py-3 text-base font-medium",
-                isActive ? "bg-aura-porcelain font-medium text-aura-gold" : "text-aura-black",
-              ].join(" ")
-            }
-            onClick={closeMobile}
-          >
-            Wholesale Jewelry
-          </NavLink>
+          <MobileDropdown
+            label="Wholesale Jewelry"
+            isSectionActive={wholesaleActive}
+            items={wholesaleChildren}
+            onNavigate={closeMobile}
+          />
           <NavLink
             to="/packaging-branding"
             className={({ isActive }) =>
