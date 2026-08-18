@@ -18,7 +18,7 @@ export function LandingLayout() {
             href="#inquiry"
             className="rounded-full bg-aura-black px-5 py-2 text-sm font-medium text-white transition hover:bg-aura-black/90"
           >
-            Get a free quote
+            Get in touch
           </a>
         </div>
       </header>
