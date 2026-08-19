@@ -1,9 +1,10 @@
 import { useEffect, useState, type FormEvent } from "react";
+import type { OemLandingTranslations } from "../i18n/oemLanding";
 
 const WEB3FORMS_ACTION = "https://api.web3forms.com/submit";
 const WHATSAPP_URL = "https://wa.me/8613305631958";
 
-const lookingForOptions = [
+const defaultLookingForOptions = [
   "Ready-Stock Wholesale Jewelry",
   "Custom / OEM Jewelry",
   "Private Label Jewelry",
@@ -16,6 +17,7 @@ type InquiryFormProps = {
   className?: string;
   source?: string;
   variant?: "default" | "ads";
+  labels?: OemLandingTranslations["form"];
 };
 
 const fieldClass =
@@ -28,6 +30,7 @@ export function InquiryForm({
   className = "",
   source,
   variant = "default",
+  labels,
 }: InquiryFormProps) {
   const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim();
   const [submitted, setSubmitted] = useState(false);
@@ -75,6 +78,11 @@ export function InquiryForm({
     // Native POST to Web3Forms — no fetch, no CORS issues.
   };
 
+  const formLabels = isAds ? labels : undefined;
+  const lookingForOptions =
+    formLabels?.lookingForOptions ??
+    defaultLookingForOptions.map((option) => ({ value: option, label: option }));
+
   if (submitted) {
     return (
       <div
@@ -84,9 +92,12 @@ export function InquiryForm({
           className,
         ].join(" ")}
       >
-        <p className="font-display text-2xl font-medium text-aura-black">Thank you</p>
+        <p className="font-display text-2xl font-medium text-aura-black">
+          {formLabels?.thankYouTitle ?? "Thank you"}
+        </p>
         <p className="mt-3 text-sm leading-relaxed text-aura-stone sm:text-base">
-          Your inquiry has been received. Our team will respond within 1–2 business days.
+          {formLabels?.thankYouBody ??
+            "Your inquiry has been received. Our team will respond within 1–2 business days."}
         </p>
       </div>
     );
@@ -101,7 +112,9 @@ export function InquiryForm({
           className,
         ].join(" ")}
       >
-        <p className="font-display text-xl font-medium text-aura-black">Inquiry form unavailable</p>
+        <p className="font-display text-xl font-medium text-aura-black">
+          {formLabels?.unavailableTitle ?? "Inquiry form unavailable"}
+        </p>
         <p className="mt-3 text-sm leading-relaxed text-aura-stone">
           Please email{" "}
           <a href="mailto:contact@steelaurajewelry.com" className="text-aura-black underline hover:text-aura-gold">
@@ -144,11 +157,12 @@ export function InquiryForm({
           isAds ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl",
         ].join(" ")}
       >
-        {isAds ? "Get Catalog, MOQ & Pricing" : "Send an inquiry"}
+        {isAds ? (formLabels?.heading ?? "Get Catalog, MOQ & Pricing") : "Send an inquiry"}
       </h2>
       <p className={["mt-2 leading-relaxed text-aura-stone", isAds ? "text-sm" : "text-sm sm:text-base"].join(" ")}>
         {isAds
-          ? "Tell us what you need. Our team will recommend suitable products or manufacturing options."
+          ? (formLabels?.intro ??
+            "Tell us what you need. Our team will recommend suitable products or manufacturing options.")
           : "Tell us about your project — product type, estimated quantity, target market, and timeline."}
       </p>
 
@@ -165,25 +179,25 @@ export function InquiryForm({
         <div className="mt-5 grid gap-3.5 sm:grid-cols-2">
           <label className="block sm:col-span-1">
             <span className={labelClass}>
-              Name <span className="text-aura-gold">*</span>
+              {formLabels?.name ?? "Name"} <span className="text-aura-gold">*</span>
             </span>
             <input type="text" name="name" required autoComplete="name" className={fieldClass} />
           </label>
           <label className="block sm:col-span-1">
             <span className={labelClass}>
-              Business Email <span className="text-aura-gold">*</span>
+              {formLabels?.email ?? "Business Email"} <span className="text-aura-gold">*</span>
             </span>
             <input type="email" name="email" required autoComplete="email" className={fieldClass} />
           </label>
           <label className="block sm:col-span-1">
             <span className={labelClass}>
-              Phone <span className="text-aura-gold">*</span>
+              {formLabels?.phone ?? "Phone"} <span className="text-aura-gold">*</span>
             </span>
             <input type="tel" name="phone" required autoComplete="tel" className={fieldClass} />
           </label>
           <label className="block sm:col-span-1">
             <span className={labelClass}>
-              Country <span className="text-aura-gold">*</span>
+              {formLabels?.country ?? "Country"} <span className="text-aura-gold">*</span>
             </span>
             <input
               type="text"
@@ -195,25 +209,30 @@ export function InquiryForm({
           </label>
           <label className="block sm:col-span-2">
             <span className={labelClass}>
-              What are you looking for? <span className="text-aura-gold">*</span>
+              {formLabels?.lookingFor ?? "What are you looking for?"}{" "}
+              <span className="text-aura-gold">*</span>
             </span>
             <select name="looking_for" required defaultValue="" className={fieldClass}>
               <option value="" disabled>
-                Select an option
+                {formLabels?.selectOption ?? "Select an option"}
               </option>
               {lookingForOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
+                <option key={option.value} value={option.value}>
+                  {option.label}
                 </option>
               ))}
             </select>
           </label>
           <label className="block sm:col-span-2">
-            <span className={labelClass}>Message / What products are you looking for?</span>
+            <span className={labelClass}>
+              {formLabels?.message ?? "Message / What products are you looking for?"}
+            </span>
             <textarea
               name="message"
               rows={3}
-              placeholder="Jewelry categories, styles, finishes, branding needs…"
+              placeholder={
+                formLabels?.messagePlaceholder ?? "Jewelry categories, styles, finishes, branding needs…"
+              }
               className={`${fieldClass} resize-y`}
             />
           </label>
@@ -293,14 +312,14 @@ export function InquiryForm({
           ].join(" ")}
         >
           {submitting
-            ? "Submitting…"
+            ? (formLabels?.submitting ?? "Submitting…")
             : isAds
-              ? "Get Pricing & Manufacturing Options"
+              ? (formLabels?.submit ?? "Get Pricing & Manufacturing Options")
               : "Submit inquiry"}
         </button>
         {isAds ? (
           <p className="text-center text-xs leading-relaxed text-aura-stone">
-            B2B inquiries only. No obligation to order.
+            {formLabels?.reassurance ?? "B2B inquiries only. No obligation to order."}
           </p>
         ) : (
           <a

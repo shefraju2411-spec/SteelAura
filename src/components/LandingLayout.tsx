@@ -1,4 +1,6 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useOptionalOemLandingLanguage } from "../context/OemLandingLanguageContext";
 
 const WHATSAPP_URL = `https://wa.me/8613305631958?text=${encodeURIComponent("Hello SteelAura")}`;
 
@@ -11,10 +13,18 @@ function WhatsAppIcon({ className }: { className?: string }) {
 }
 
 export function LandingLayout() {
+  const location = useLocation();
+  const isOemLanding = location.pathname === "/lp/oem";
+  const languageContext = useOptionalOemLandingLanguage();
+  const whatsappLabel = isOemLanding ? (languageContext?.t.header.whatsapp ?? "Whatsapp Us") : "Whatsapp Us";
+  const visitWebsiteLabel = isOemLanding
+    ? (languageContext?.t.footer.visitWebsite ?? "Visit full website")
+    : "Visit full website";
+
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-50 border-b border-aura-line bg-white/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4 sm:gap-4 sm:px-6 lg:px-8">
           <Link to="/" className="group flex shrink-0 items-baseline gap-1">
             <span className="font-display text-xl font-medium tracking-normal text-aura-black sm:text-2xl">
               SteelAura
@@ -24,15 +34,19 @@ export function LandingLayout() {
             </span>
           </Link>
 
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-aura-black px-5 py-2 text-sm font-medium text-white transition hover:bg-aura-black/90"
-          >
-            <WhatsAppIcon className="h-4 w-4" />
-            Whatsapp Us
-          </a>
+          <div className="flex items-center gap-2 sm:gap-3">
+            {isOemLanding ? <LanguageSwitcher /> : null}
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-aura-black px-4 py-2 text-sm font-medium text-white transition hover:bg-aura-black/90 sm:px-5"
+            >
+              <WhatsAppIcon className="h-4 w-4" />
+              <span className="hidden sm:inline">{whatsappLabel}</span>
+              <span className="sm:hidden">WhatsApp</span>
+            </a>
+          </div>
         </div>
       </header>
 
@@ -49,7 +63,7 @@ export function LandingLayout() {
             </a>
           </p>
           <Link to="/" className="text-sm font-medium text-aura-black transition hover:text-aura-gold">
-            Visit full website
+            {visitWebsiteLabel}
           </Link>
         </div>
       </footer>

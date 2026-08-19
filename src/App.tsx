@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { OemLandingLanguageProvider } from "./context/OemLandingLanguageContext";
 import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
@@ -25,7 +26,13 @@ import { WholesaleLanding } from "./pages/lp/WholesaleLanding";
 export default function App() {
   return (
     <Routes>
-      <Route element={<LandingLayout />}>
+      <Route
+        element={
+          <OemLandingLanguageProvider>
+            <LandingLayout />
+          </OemLandingLanguageProvider>
+        }
+      >
         <Route path="/lp/oem" element={<OemLanding />} />
         <Route path="/lp/quality" element={<QualityLanding />} />
         <Route path="/lp/wholesale" element={<WholesaleLanding />} />
