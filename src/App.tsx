@@ -19,6 +19,7 @@ import { WhyStainlessSteelFashionJewelry } from "./pages/blog/WhyStainlessSteelF
 import { Stainless304Vs316L } from "./pages/blog/Stainless304Vs316L";
 import { PrivateLabelJewelry } from "./pages/PrivateLabelJewelry";
 import { LandingLayout } from "./components/LandingLayout";
+import { ThankYou } from "./pages/ThankYou";
 import { OemLanding } from "./pages/lp/OemLanding";
 import { QualityLanding } from "./pages/lp/QualityLanding";
 import { WholesaleLanding } from "./pages/lp/WholesaleLanding";
@@ -34,6 +35,7 @@ export default function App() {
         }
       >
         <Route path="/lp/oem" element={<OemLanding />} />
+        <Route path="/lp/thank-you" element={<ThankYou variant="landing" />} />
         <Route path="/lp/quality" element={<QualityLanding />} />
         <Route path="/lp/wholesale" element={<WholesaleLanding />} />
       </Route>
@@ -61,6 +63,7 @@ export default function App() {
         <Route path="/blog/304-vs-316l-stainless-steel-jewelry" element={<Stainless304Vs316L />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/thank-you" element={<ThankYou />} />
       </Route>
     </Routes>
   );

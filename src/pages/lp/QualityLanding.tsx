@@ -381,7 +381,7 @@ export function QualityLanding() {
               manufacturing begins.
             </p>
           </div>
-          <InquiryForm id="inquiry" source="Quality Landing Page (/lp/quality)" />
+          <InquiryForm id="inquiry" source="Quality Landing Page (/lp/quality)" thankYouPath="/lp/thank-you" />
         </div>
       </section>
     </div>

@@ -18,6 +18,7 @@ type InquiryFormProps = {
   source?: string;
   variant?: "default" | "ads";
   labels?: OemLandingTranslations["form"];
+  thankYouPath?: string;
 };
 
 const fieldClass =
@@ -31,30 +32,29 @@ export function InquiryForm({
   source,
   variant = "default",
   labels,
+  thankYouPath = "/thank-you",
 }: InquiryFormProps) {
   const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim();
-  const [submitted, setSubmitted] = useState(false);
   const [redirectUrl, setRedirectUrl] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const isAds = variant === "ads";
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("inquiry") === "sent") {
-      setSubmitted(true);
-      params.delete("inquiry");
-      const hash = window.location.hash || `#${id}`;
-      const query = params.toString();
-      const nextUrl = `${window.location.pathname}${query ? `?${query}` : ""}${hash}`;
-      window.history.replaceState({}, "", nextUrl);
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, [id]);
+    const currentParams = new URLSearchParams(window.location.search);
+    const thankYouParams = new URLSearchParams();
 
-  useEffect(() => {
-    const hash = window.location.hash || `#${id}`;
-    setRedirectUrl(`${window.location.origin}${window.location.pathname}?inquiry=sent${hash}`);
-  }, [id]);
+    if (source) {
+      thankYouParams.set("source", source);
+    }
+
+    const lang = currentParams.get("lang");
+    if (lang) {
+      thankYouParams.set("lang", lang);
+    }
+
+    const query = thankYouParams.toString();
+    setRedirectUrl(`${window.location.origin}${thankYouPath}${query ? `?${query}` : ""}`);
+  }, [source, thankYouPath]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     const form = e.currentTarget;
@@ -82,26 +82,6 @@ export function InquiryForm({
   const lookingForOptions =
     formLabels?.lookingForOptions ??
     defaultLookingForOptions.map((option) => ({ value: option, label: option }));
-
-  if (submitted) {
-    return (
-      <div
-        id={id}
-        className={[
-          "rounded-2xl border border-aura-line bg-aura-porcelain/50 p-8 text-center ring-1 ring-black/[0.04] sm:p-10",
-          className,
-        ].join(" ")}
-      >
-        <p className="font-display text-2xl font-medium text-aura-black">
-          {formLabels?.thankYouTitle ?? "Thank you"}
-        </p>
-        <p className="mt-3 text-sm leading-relaxed text-aura-stone sm:text-base">
-          {formLabels?.thankYouBody ??
-            "Your inquiry has been received. Our team will respond within 1–2 business days."}
-        </p>
-      </div>
-    );
-  }
 
   if (!accessKey) {
     return (

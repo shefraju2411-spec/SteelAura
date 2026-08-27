@@ -188,6 +188,7 @@ export function OemLanding() {
             className="scroll-mt-24"
             source="OEM Google Ads Landing Page (/lp/oem)"
             labels={t.form}
+            thankYouPath="/lp/thank-you"
           />
         </div>
       </section>

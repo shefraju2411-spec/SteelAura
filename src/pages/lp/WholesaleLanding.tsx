@@ -936,6 +936,7 @@ export function WholesaleLanding() {
             id="inquiry"
             className="scroll-mt-24"
             source="Wholesale Landing Page (/lp/wholesale)"
+            thankYouPath="/lp/thank-you"
           />
         </div>
       </section>
